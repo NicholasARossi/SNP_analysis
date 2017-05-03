@@ -19,43 +19,43 @@ iris = sns.load_dataset("iris")
 # "Melt" the dataset to "long-form" or "tidy" representation
 df_size=500
 ### Wheat DF
-wheat=pd.DataFrame()
+four=pd.DataFrame()
 ### determine probabilities
-rez=ie.solver(16,1.2517875997584096)
-wheat['species']=['wheat']*df_size
-wheat['values']=np.random.rand(df_size)
-wheat['genotype']=np.random.choice(16, df_size,p=rez)
+rez=ie.solver(2,1)
+four['species']=['two']*df_size
+four['values']=np.random.rand(df_size)
+four['genotype']=np.random.choice(2, df_size,p=rez)
 
 
-
-human=pd.DataFrame()
+eight=pd.DataFrame()
 ### determine probabilities
-rez=ie.solver(16,1.116289189572329)
-
-human['species']=['human']*df_size
-human['values']=np.random.rand(df_size)
-human['genotype']=np.random.choice(16, df_size,p=rez)
-
-
-random=pd.DataFrame()
-random_weights=np.ones(16)*(1/16)
-random['species']=['random']*df_size
-random['values']=np.random.rand(df_size)
-random['genotype']=np.random.choice(16, df_size,p=random_weights)
+rez=ie.solver(4,1)
+eight['species']=['four']*df_size
+eight['values']=np.random.rand(df_size)
+eight['genotype']=np.random.choice(4, df_size,p=rez)
 
 
-uniform=pd.DataFrame()
-
-uniform['species']=['uniform']*df_size
-uniform['values']=np.random.rand(df_size)
-uniform['genotype']=np.zeros(df_size)
+sixteen=pd.DataFrame()
+### determine probabilities
+rez=ie.solver(8,1)
+sixteen['species']=['eight']*df_size
+sixteen['values']=np.random.rand(df_size)
+sixteen['genotype']=np.random.choice(8, df_size,p=rez)
 
 # s['human']=np.ones(10)
-frames = [random, wheat,human,uniform]
+frames = [four,eight,sixteen]
 
 result = pd.concat(frames)
 
+# s = pd.Series(np.ones(10)*10, index='wheat')
+# s = pd.Series(np.ones(10)*10, index='sequence')
+# # Draw a categorical scatterplot to show each observation
+# sns.swarmplot(x="measurement", y="value", hue="sequence",palette="Set2", data=iris)
+# "Melt" the dataset to "long-form" or "tidy" representation
+# iris = pd.melt(iris, "species", var_name="measurement")
 
+# Draw a categorical scatterplot to show each observation
+#palette="Set2"
 
 tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
              (44, 160, 44), (152, 223, 138), (214, 39, 40), (255, 152, 150),
@@ -72,13 +72,4 @@ sns.swarmplot(x="species", y="values", hue="genotype", palette=tableau20,data=re
 ax1.legend_.remove()
 ax1.set_ylabel('')
 ax1.set_yticks([])
-
-ax2 = ax1.twinx()
-ax2.plot(np.arange(4),[4,1.2517875997584096,1.116289189572329,0],linewidth=6,color='black',label='entropy of the set')
-
-ax2.plot(np.arange(4),[4,1.2517875997584096,1.116289189572329,0],linewidth=5,color='white')
-
-ax2.set_xlim([-.5,3.5])
-ax2.legend()
-ax2.set_ylim([-1,5])
-fig.savefig('swarm_plot2.png',dpi=200)
+fig.savefig('entropy_comparison.png')

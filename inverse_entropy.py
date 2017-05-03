@@ -12,6 +12,7 @@ def entropy(prob_array):
 def entropy_diff(prob_array,*desired):
     entropy=0
     target,=desired
+    prob_array[0]=0.5
     for prob in prob_array:
         if prob>0:
             entropy += - prob*math.log(prob, 2)
